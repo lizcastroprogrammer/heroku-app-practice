@@ -29,9 +29,9 @@ app.get("/accounts", function (req, res) {
 });
 
 // add user
-app.post("/accounts/:name", function (req, res) {
+app.post("/accounts", function (req, res) {
   var user = {
-    name: req.body.name,
+    name: req.body,
   };
   db.get("users").push(user).write();
   console.log(db.get("users").value());
