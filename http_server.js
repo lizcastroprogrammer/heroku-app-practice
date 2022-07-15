@@ -29,24 +29,27 @@ app.get("/accounts", function (req, res) {
 });
 
 // add user
-app.post("/accounts", function (req, res) {
-  var user = {
-    name: req.body.name,
-    dob: req.body.dob,
-    email: req.body.email,
-    username: req.body.username,
-    password: req.body.password,
-    phone: req.body.phone,
-    streetaddress: req.body.streetaddress,
-    citystatezip: req.body.citystatezip,
-    latitude: req.body.latitude,
-    longitude: req.body.longitude,
-    avatar: req.body.avatar,
-  };
-  db.get("users").push(user).write();
-  console.log(db.get("users").value());
-  res.send(db.get("users").value());
-});
+app.post(
+  "/accounts/:name/:dob/:email/:username/:password/:phone/:streetaddress/:citystatezip/:latitude/:longitude/:avatar",
+  function (req, res) {
+    var user = {
+      name: req.body.name,
+      dob: req.body.dob,
+      email: req.body.email,
+      username: req.body.username,
+      password: req.body.password,
+      phone: req.body.phone,
+      streetaddress: req.body.streetaddress,
+      citystatezip: req.body.citystatezip,
+      latitude: req.body.latitude,
+      longitude: req.body.longitude,
+      avatar: req.body.avatar,
+    };
+    db.get("users").push(user).write();
+    console.log(db.get("users").value());
+    res.send(db.get("users").value());
+  }
+);
 
 // start server
 // -----------------------
